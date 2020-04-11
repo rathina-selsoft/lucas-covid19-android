@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Covid19 Food</string>
+    <string name="for_me">For ME</string>
+    <string name="for_someone">For Someone</string>
+    <string name="admin">Admin</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="lucas_charity_foundation">Lucas Charity Foundation</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="address">Address</string>
+    <string name="use_google_current_location">Use Google Current Location</string>
+    <string name="when_you_need_food">When you need food?</string>
+    <string name="what_time">What time?</string>
+    <string name="submit">Submit</string>
+</resources>

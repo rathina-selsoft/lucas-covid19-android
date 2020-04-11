@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#c2185b</color>
+    <color name="primaryLightColor">#fa5788</color>
+    <color name="primaryDarkColor">#8c0032</color>
+    <color name="secondaryColor">#ffcdd2</color>
+    <color name="secondaryLightColor">#ffffff</color>
+    <color name="secondaryDarkColor">#cb9ca1</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#000000</color>
+
+
+    <color name="black">#000</color>
+    <color name="white">#FFF</color>
+    <color name="un_select_white">#e6e0e0</color>
+    <color name="translucent_white">#CCffffff</color>
+
+    <color name="view">#a6a5a5</color>
+    <color name="white_ok">#4DFFFFFF</color>
+    <color name="menu_white">#4DFFFFFF</color>
+
+    <color name="colorPrimary">#3fa69a</color>
+    <color name="colorPrimaryDark">#1f827e</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="profile">#4bb3ab</color>
+    <color name="promotion">#054e5e</color>
+    <color name="history">#a71565</color>
+    <color name="favorite">#e40067</color>
+    <color name="rewards">#f15b5b</color>
+
+</resources>
