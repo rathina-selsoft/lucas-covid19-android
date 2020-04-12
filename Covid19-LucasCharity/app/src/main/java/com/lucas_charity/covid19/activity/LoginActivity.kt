@@ -13,9 +13,15 @@ import butterknife.OnClick
 import com.lucas_charity.covid19.MainActivity
 import com.lucas_charity.covid19.R
 import com.lucas_charity.covid19.models.User
+import com.lucas_charity.covid19.models.UserResponse
+import com.lucas_charity.covid19.remote.Api
+import com.lucas_charity.covid19.remote.RetrofitEngine
 import com.lucas_charity.covid19.utils.SessionManager
 import com.lucas_charity.covid19.utils.Utils
 import com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 @Suppress("NAME_SHADOWING")
 class LoginActivity : AppCompatActivity() {
@@ -48,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
         var isValid = true;
 
         if (Utils.isValidEmail(email.text.toString())) {
-            user.email = email.text.toString()
+            user.emailId = email.text.toString()
         } else {
             isValid = false
             email.error = "Please enter Email"
@@ -72,27 +78,31 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun sendLogin(user: User) {
-        val user = User()
-        user.userId = 1
+        val api: Api = RetrofitEngine.getClient
+        val call: Call<UserResponse> = api.loginUser(user)
+        call.enqueue(object : Callback<UserResponse?> {
+            override fun onResponse(
+                call: Call<UserResponse?>,
+                response: Response<UserResponse?>
+            ) {
+                if (response.isSuccessful) {
+                    val userResp = response.body()
+                    if (userResp!!.success!!) {
+                        val sessionManager = SessionManager(this@LoginActivity)
+                        sessionManager.setUserDetails(userResp.user!!)
+                        Utils.showToast(this@LoginActivity, "Login Success")
+                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                        this@LoginActivity.finish()
+                    } else {
+                        Utils.showToast(this@LoginActivity, userResp.message!!)
+                    }
+                }
+            }
 
-        val sessionManager = SessionManager(this)
-        sessionManager.setUserDetails(user)
+            override fun onFailure(call: Call<UserResponse?>, t: Throwable) {
 
-        startActivity(Intent(this, MainActivity::class.java))
-        this.finish()
-//        val api: Api = RetrofitEngine.getClient
-//        val call: Call<UserResponse> = api.loginUser(user)
-//        call.enqueue(object : Callback<UserResponse?> {
-//            override fun onResponse(
-//                call: Call<UserResponse?>,
-//                response: Response<UserResponse?>
-//            ) {
-//
-//            }
-//
-//            override fun onFailure(call: Call<UserResponse?>, t: Throwable) {
-//
-//            }
-//        })
+            }
+        })
+
     }
 }

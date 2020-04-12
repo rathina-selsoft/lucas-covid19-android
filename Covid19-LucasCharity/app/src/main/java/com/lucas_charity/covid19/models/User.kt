@@ -13,13 +13,13 @@ class User {
     @Expose
     var fullName: String? = null
 
-    @SerializedName("email")
+    @SerializedName("emailId")
     @Expose
-    var email: String? = null
+    var emailId: String? = null
 
-    @SerializedName("phone")
+    @SerializedName("phoneNumber")
     @Expose
-    var phone: String? = null
+    var phoneNumber: String? = null
 
     @SerializedName("password")
     @Expose

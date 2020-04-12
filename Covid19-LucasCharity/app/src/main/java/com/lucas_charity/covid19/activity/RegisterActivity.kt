@@ -60,13 +60,13 @@ class RegisterActivity : AppCompatActivity() {
             fullName.error = "Please enter Full Name"
         }
         if (Utils.isValidEmail(email.text.toString())) {
-            user.email = email.text.toString()
+            user.emailId = email.text.toString()
         } else {
             isValid = false
             email.error = "Please enter Email"
         }
         if (Utils.isValid(phone.text.toString())) {
-            user.phone = phone.text.toString()
+            user.phoneNumber = phone.text.toString()
         } else {
             isValid = false
             phone.error = "Please enter Phone Number"
@@ -77,27 +77,35 @@ class RegisterActivity : AppCompatActivity() {
             isValid = false
             password.error = "Please enter Password"
         }
-        user.userType = 2
-
         if (isValid)
             sendRegister(user)
     }
 
     private fun sendRegister(user: User) {
-        startActivity(Intent(this, LoginActivity::class.java))
-//        val api: Api = RetrofitEngine.getClient
-//        val call: Call<UserResponse> = api.registerNewUser(user)
-//        call.enqueue(object : Callback<UserResponse?> {
-//            override fun onResponse(
-//                call: Call<UserResponse?>,
-//                response: Response<UserResponse?>
-//            ) {
-//
-//            }
-//            override fun onFailure(call: Call<UserResponse?>, t: Throwable) {
-//
-//            }
-//        })
+
+        val api: Api = RetrofitEngine.getClient
+        val call: Call<UserResponse> = api.registerNewUser(user)
+        call.enqueue(object : Callback<UserResponse?> {
+            override fun onResponse(
+                call: Call<UserResponse?>,
+                response: Response<UserResponse?>
+            ) {
+                if (response.isSuccessful) {
+                    val userResp = response.body()
+                    if (userResp!!.success!!) {
+                        Utils.showToast(this@RegisterActivity, "Register Success")
+                        startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                        this@RegisterActivity.finish()
+                    } else {
+                        Utils.showToast(this@RegisterActivity, userResp.message!!)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<UserResponse?>, t: Throwable) {
+
+            }
+        })
     }
 
 

@@ -9,11 +9,15 @@ class UserResponse {
 
     @SerializedName("success")
     @Expose
-    val success: Boolean? = null
+    var success: Boolean? = null
 
     @SerializedName("user")
     @Expose
-    val user: User? = null
+    var user: User? = null
+
+    @SerializedName("message")
+    @Expose
+    var message: String? = null
 
 
 }

@@ -28,11 +28,11 @@ class SessionManager(private val context: Context) {
         @SuppressLint("CommitPrefEdits")
         val editor = context.getSharedPreferences("COVID19 Data", Context.MODE_PRIVATE).edit()
         editor.putString("fullName", user.fullName)
-        editor.putString("email", user.email)
+        editor.putString("email", user.emailId)
         editor.putString("password", user.password)
         editor.putInt("userType", user.userType)
         editor.putInt("userId", user.userId)
-        editor.putString("phone", user.phone)
+        editor.putString("phone", user.phoneNumber)
         editor.apply()
     }
 
@@ -40,10 +40,10 @@ class SessionManager(private val context: Context) {
         val prefs = context.getSharedPreferences("COVID19 Data", Context.MODE_PRIVATE)
         val user = User()
         user.fullName = prefs.getString("fullName", null)
-        user.email = prefs.getString("email", null)
+        user.emailId = prefs.getString("email", null)
         user.password = prefs.getString("password", null)
         user.userType = prefs.getInt("userType", 0)
-        user.phone = prefs.getString("phone", null)
+        user.phoneNumber = prefs.getString("phone", null)
         user.userId = prefs.getInt("userId", 0)
         return user
     }

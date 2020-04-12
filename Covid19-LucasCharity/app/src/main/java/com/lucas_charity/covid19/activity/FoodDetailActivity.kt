@@ -56,7 +56,7 @@ class FoodDetailActivity : AppCompatActivity() {
         ButterKnife.bind(this)
 
         fullName.setText(Utils.user!!.fullName)
-        phone.setText(Utils.user!!.phone)
+        phone.setText(Utils.user!!.phoneNumber)
 
         date.text = SimpleDateFormat(dateFormat).format(System.currentTimeMillis())
         time.text = SimpleDateFormat(timeFormat).format(System.currentTimeMillis())
