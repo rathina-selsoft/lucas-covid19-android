@@ -5,7 +5,11 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 
-class FoodDetail {
+class FoodRequest {
+
+    @SerializedName("foodId")
+    @Expose
+    var foodId: String? = null
 
     @SerializedName("fullName")
     @Expose
@@ -43,8 +47,8 @@ class FoodDetail {
     @Expose
     var timeLong: Long? = null
 
-    @SerializedName("userId")
+    @SerializedName("enteredBy")
     @Expose
-    var userId: Int? = null
+    var enteredBy: Int? = null
 
 }

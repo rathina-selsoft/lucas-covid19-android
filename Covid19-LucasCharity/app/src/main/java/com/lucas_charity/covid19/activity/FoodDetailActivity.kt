@@ -23,8 +23,8 @@ import java.util.*
 import android.provider.Settings
 import android.widget.*
 import com.google.android.gms.location.*
-import com.lucas_charity.covid19.models.FoodDetail
-import com.lucas_charity.covid19.models.FoodDetailResponse
+import com.lucas_charity.covid19.models.FoodRequest
+import com.lucas_charity.covid19.models.FoodRequestResponse
 import com.lucas_charity.covid19.remote.Api
 import com.lucas_charity.covid19.remote.RetrofitEngine
 import retrofit2.Call
@@ -225,7 +225,7 @@ class FoodDetailActivity : AppCompatActivity() {
 
     @OnClick(R.id.btn_submit)
     fun submitTapped() {
-        val foodDetail = FoodDetail()
+        val foodDetail = FoodRequest()
         var isValid = true;
 
         if (Utils.isValid(fullName.text.toString())) {
@@ -252,19 +252,19 @@ class FoodDetailActivity : AppCompatActivity() {
         foodDetail.dateLong = dateCalendar.timeInMillis
         foodDetail.timeLong = timeCalendar.timeInMillis
         foodDetail.address = address.text.toString()
-        foodDetail.userId = Utils.user?.userId
+        foodDetail.enteredBy = Utils.user?.userId
 
         if (isValid)
             sendFoodRequest(foodDetail)
     }
 
-    private fun sendFoodRequest(foodDetail: FoodDetail) {
+    private fun sendFoodRequest(foodRequest: FoodRequest) {
         val api: Api = RetrofitEngine.getClient
-        val call: Call<FoodDetailResponse> = api.addFood(foodDetail)
-        call.enqueue(object : Callback<FoodDetailResponse?> {
+        val call: Call<FoodRequestResponse> = api.addFood(foodRequest)
+        call.enqueue(object : Callback<FoodRequestResponse?> {
             override fun onResponse(
-                call: Call<FoodDetailResponse?>,
-                response: Response<FoodDetailResponse?>
+                call: Call<FoodRequestResponse?>,
+                response: Response<FoodRequestResponse?>
             ) {
                 if (response.isSuccessful) {
                     val foodDetailResponse = response.body()
@@ -281,7 +281,7 @@ class FoodDetailActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<FoodDetailResponse?>, t: Throwable) {
+            override fun onFailure(call: Call<FoodRequestResponse?>, t: Throwable) {
 
             }
         })

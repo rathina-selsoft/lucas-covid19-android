@@ -3,7 +3,7 @@ package com.lucas_charity.covid19.models
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class FoodDetailResponse {
+class FoodRequestResponse {
 
     @SerializedName("success")
     @Expose
@@ -11,7 +11,7 @@ class FoodDetailResponse {
 
     @SerializedName("foodDetail")
     @Expose
-    var foodDetail: FoodDetail? = null
+    var foodRequest: FoodRequest? = null
 
     @SerializedName("message")
     @Expose
