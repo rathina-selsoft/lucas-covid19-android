@@ -93,11 +93,13 @@ class RegisterActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val userResp = response.body()
                     if (userResp!!.success!!) {
-                        Utils.showToast(this@RegisterActivity, "Register Success")
+                        val toast = Utils.showToast(this@RegisterActivity, "Register Success")
+                        toast.show()
                         startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                         this@RegisterActivity.finish()
                     } else {
-                        Utils.showToast(this@RegisterActivity, userResp.message!!)
+                        val toast = Utils.showToast(this@RegisterActivity, userResp.message!!)
+                        toast.show()
                     }
                 }
             }

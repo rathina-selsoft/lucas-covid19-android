@@ -90,11 +90,13 @@ class LoginActivity : AppCompatActivity() {
                     if (userResp!!.success!!) {
                         val sessionManager = SessionManager(this@LoginActivity)
                         sessionManager.setUserDetails(userResp.user!!)
-                        Utils.showToast(this@LoginActivity, "Login Success")
+                        val toast = Utils.showToast(this@LoginActivity, "Login Success")
+                        toast.show()
                         startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         this@LoginActivity.finish()
                     } else {
-                        Utils.showToast(this@LoginActivity, userResp.message!!)
+                        val toast = Utils.showToast(this@LoginActivity, userResp.message!!)
+                        toast.show()
                     }
                 }
             }
