@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/secondaryColor"
+    android:gravity="center|center_horizontal"
+    tools:context=".activity.ui.HomeFragment">
+
+    <TextView
+        android:id="@+id/txt_lucas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lucas_charity_foundation"
+        android:textColor="@color/black"
+        android:textSize="@dimen/h"
+        android:textStyle="bold"
+        tools:ignore="SpUsage" />
+
+    <Button
+        android:id="@+id/btn_for_me"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_lucas"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:background="@drawable/btn_bg"
+        android:text="@string/for_me"
+        android:textColor="@color/primaryTextColor" />
+
+    <Button
+        android:id="@+id/btn_for_other"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_for_me"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:background="@drawable/btn_bg"
+        android:text="@string/for_someone"
+        android:textColor="@color/primaryTextColor" />
+</RelativeLayout>

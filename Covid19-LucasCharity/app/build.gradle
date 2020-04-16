@@ -32,6 +32,14 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+// To inline the bytecode built with JVM target 1.8 into
+// bytecode that is being built with JVM target 1.6. (e.g. navArgs)
+
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
 }
 
 dependencies {
@@ -50,6 +58,7 @@ dependencies {
     // butter knife
     //noinspection AnnotationProcessorOnCompilePath
     implementation 'com.jakewharton:butterknife:10.2.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt 'com.jakewharton:butterknife-compiler:10.2.1'
 
     // retrofit 2

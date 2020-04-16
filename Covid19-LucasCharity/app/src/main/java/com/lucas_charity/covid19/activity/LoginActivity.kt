@@ -93,7 +93,7 @@ class LoginActivity : AppCompatActivity() {
                         val toast = Utils.showToast(this@LoginActivity, "Login Success")
                         toast.show()
 
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                        startActivity(Intent(this@LoginActivity, MainNavActivity::class.java))
                         this@LoginActivity.finish()
                     } else {
                         val toast = Utils.showToast(this@LoginActivity, userResp.message!!)
