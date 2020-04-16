@@ -60,10 +60,10 @@ class FoodDetailActivity : AppCompatActivity() {
     @BindView(R.id.btn_submit)
     lateinit var submitBtn: Button
 
-    val dateFormat = "MMM/dd/yyyy";
-    val timeFormat = "hh:mm a";
-    val PERMISSION_ID = 42
-    lateinit var mFusedLocationClient: FusedLocationProviderClient
+    private val dateFormat = "MMM/dd/yyyy"
+    private val timeFormat = "hh:mm a"
+    private val PERMISSION_ID = 42
+    private lateinit var mFusedLocationClient: FusedLocationProviderClient
 
     var latitude: Double = 0.0
     var longitude: Double = 0.0
@@ -99,7 +99,7 @@ class FoodDetailActivity : AppCompatActivity() {
             if (isLocationEnabled()) {
 
                 mFusedLocationClient.lastLocation.addOnCompleteListener(this) { task ->
-                    var location: Location? = task.result
+                    val location: Location? = task.result
                     if (location == null) {
                         requestNewLocationData()
                     } else {
@@ -127,21 +127,21 @@ class FoodDetailActivity : AppCompatActivity() {
 
     @SuppressLint("MissingPermission")
     private fun requestNewLocationData() {
-        var mLocationRequest = LocationRequest()
+        val mLocationRequest = LocationRequest()
         mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         mLocationRequest.interval = 0
         mLocationRequest.fastestInterval = 0
         mLocationRequest.numUpdates = 1
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        mFusedLocationClient!!.requestLocationUpdates(
+        mFusedLocationClient.requestLocationUpdates(
             mLocationRequest, mLocationCallback,
             Looper.myLooper()
         )
     }
 
     private fun isLocationEnabled(): Boolean {
-        var locationManager: LocationManager =
+        val locationManager: LocationManager =
             getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
             LocationManager.NETWORK_PROVIDER
@@ -226,7 +226,7 @@ class FoodDetailActivity : AppCompatActivity() {
     @OnClick(R.id.btn_submit)
     fun submitTapped() {
         val foodDetail = FoodRequest()
-        var isValid = true;
+        var isValid = true
 
         if (Utils.isValid(fullName.text.toString())) {
             foodDetail.fullName = fullName.text.toString()
@@ -271,6 +271,7 @@ class FoodDetailActivity : AppCompatActivity() {
                     if (foodDetailResponse?.success!!) {
                         val toast = Utils.showToast(this@FoodDetailActivity, "Food request added")
                         toast.show()
+                        this@FoodDetailActivity.finish()
                     } else {
                         val toast = Utils.showToast(
                             this@FoodDetailActivity,

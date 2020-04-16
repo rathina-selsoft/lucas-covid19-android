@@ -2,10 +2,8 @@ package com.lucas_charity.covid19.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -49,9 +47,9 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     @OnClick(R.id.btn_register)
-    fun registerTapped(view: View) {
-        val user: User = User()
-        var isValid = true;
+    fun registerTapped() {
+        val user = User()
+        var isValid = true
 
         if (Utils.isValid(fullName.text.toString())) {
             user.fullName = fullName.text.toString()
@@ -95,6 +93,7 @@ class RegisterActivity : AppCompatActivity() {
                     if (userResp!!.success!!) {
                         val toast = Utils.showToast(this@RegisterActivity, "Register Success")
                         toast.show()
+
                         startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                         this@RegisterActivity.finish()
                     } else {

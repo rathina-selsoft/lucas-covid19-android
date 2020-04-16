@@ -3,7 +3,6 @@ package com.lucas_charity.covid19.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -48,10 +47,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     @OnClick(R.id.btn_login)
-    fun loginTapped(view: View) {
+    fun loginTapped() {
 
-        val user: User = User()
-        var isValid = true;
+        val user = User()
+        var isValid = true
 
         if (Utils.isValidEmail(email.text.toString())) {
             user.emailId = email.text.toString()
@@ -90,8 +89,10 @@ class LoginActivity : AppCompatActivity() {
                     if (userResp!!.success!!) {
                         val sessionManager = SessionManager(this@LoginActivity)
                         sessionManager.setUserDetails(userResp.user!!)
+
                         val toast = Utils.showToast(this@LoginActivity, "Login Success")
                         toast.show()
+
                         startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         this@LoginActivity.finish()
                     } else {
