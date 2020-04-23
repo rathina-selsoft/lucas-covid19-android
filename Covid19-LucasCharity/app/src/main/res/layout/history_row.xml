@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/history_row"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/activity_margin_half"
+            android:layout_marginLeft="@dimen/activity_margin_half"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/full_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryColor"
+                android:textSize="@dimen/primary_text_size"
+                android:textStyle="bold"
+                tools:ignore="SpUsage"
+                tools:text="Rathina Sabapathi" />
+
+            <TextView
+                android:id="@+id/phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_margin_half"
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="@dimen/primary_text_size"
+                tools:ignore="SpUsage"
+                tools:text="7788996633" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_margin_half"
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="@dimen/primary_text_size"
+                tools:ignore="SpUsage"
+                tools:text="Apr/13/2020 on 01:00 PM" />
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_margin_half"
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="@dimen/primary_text_size"
+                android:textStyle="bold"
+                tools:ignore="SpUsage"
+                tools:text="No: 2 Saraswathi Nagar, Periyakangankuppam \nUchimedu Road, Cuddalore 607 006" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/activity_margin_half"
+        android:alpha="0.12"
+        android:background="@android:color/background_dark" />
+
+
+</LinearLayout>

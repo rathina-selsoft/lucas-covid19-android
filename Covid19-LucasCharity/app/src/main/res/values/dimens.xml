@@ -343,9 +343,9 @@
     <dimen name="h4">16dp</dimen>
     <dimen name="h5">15dp</dimen>
 
-    <dimen name="primary_sub_text_size">13dp</dimen>
-    <dimen name="primary_text_size">14dp</dimen>
-    <dimen name="primary_title_size">15dp</dimen>
+    <dimen name="primary_sub_text_size">14dp</dimen>
+    <dimen name="primary_text_size">15dp</dimen>
+    <dimen name="primary_title_size">17dp</dimen>
     <dimen name="small">11dp</dimen>
     <dimen name="view_height">0.75dp</dimen>
 

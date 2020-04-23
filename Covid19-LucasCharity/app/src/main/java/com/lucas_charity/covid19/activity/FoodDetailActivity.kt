@@ -275,7 +275,7 @@ class FoodDetailActivity : AppCompatActivity() {
                     } else {
                         val toast = Utils.showToast(
                             this@FoodDetailActivity,
-                            foodDetailResponse.message!!
+                            "${foodDetailResponse.message!!}, Failed"
                         )
                         toast.show()
                     }

@@ -9,7 +9,7 @@ class FoodRequest {
 
     @SerializedName("foodId")
     @Expose
-    var foodId: String? = null
+    var foodId: Int? = null
 
     @SerializedName("fullName")
     @Expose
@@ -50,5 +50,9 @@ class FoodRequest {
     @SerializedName("enteredBy")
     @Expose
     var enteredBy: Int? = null
+
+    @SerializedName("user")
+    @Expose
+    var user: User? = null
 
 }

@@ -13,6 +13,10 @@ class FoodRequestResponse {
     @Expose
     var foodRequest: FoodRequest? = null
 
+    @SerializedName("foodRequests")
+    @Expose
+    var foodRequests: MutableList<FoodRequest>? = null
+
     @SerializedName("message")
     @Expose
     var message: String? = null

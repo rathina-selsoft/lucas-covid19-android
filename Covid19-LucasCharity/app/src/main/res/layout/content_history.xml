@@ -13,7 +13,7 @@
         android:textColor="@color/primaryColor"
         android:textSize="@dimen/_20sdp"
         android:textStyle="bold"
-        android:visibility="visible"
+        android:visibility="gone"
         tools:ignore="SpUsage" />
 
     <androidx.recyclerview.widget.RecyclerView
