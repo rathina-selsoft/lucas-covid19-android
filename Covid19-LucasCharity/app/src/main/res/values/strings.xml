@@ -28,4 +28,6 @@
     <string name="history">History</string>
     <string name="account">Account</string>
     <string name="no_history">No History</string>
+    <string name="filter_by_date">Filter by Date</string>
+    <string name="filter">Filter</string>
 </resources>

@@ -1,10 +1,12 @@
 package com.lucas_charity.covid19.activity.ui
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -56,7 +58,6 @@ class HistoryFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_history, container, false)
         ButterKnife.bind(this, root)
 
-        getHistoryViews()
         dateCalendar = Calendar.getInstance()
         getFoodHistory()
 
@@ -66,6 +67,7 @@ class HistoryFragment : Fragment() {
         historyAdapter = HistoryAdapter(mainActivity, foodRequests)
         historyRV.adapter = historyAdapter
 
+        getHistoryViews()
         return root
     }
 
@@ -110,7 +112,16 @@ class HistoryFragment : Fragment() {
 
     @OnClick(R.id.filter_history)
     fun onFilterTapped(view: View) {
-        getHistoryViews()
+        val filterDialog = AlertDialog.Builder(mainActivity)
+        val filterView = this.layoutInflater.inflate(R.layout.filter_view, null)
+        filterDialog.setView(filterView)
+        val filterByDateDialog: AlertDialog = filterDialog.create()
+
+        val fromDate: TextView = filterView.findViewById(R.id.from_date) as TextView
+        val toDate: TextView = filterView.findViewById(R.id.to_date) as TextView
+        val filterBtn: Button = filterView.findViewById(R.id.filter_btn) as Button
+
+        filterByDateDialog.show()
     }
 
     private fun getHistoryViews() {
