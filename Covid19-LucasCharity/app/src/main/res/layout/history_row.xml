@@ -63,9 +63,19 @@
                 android:layout_marginTop="@dimen/activity_margin_half"
                 android:textColor="@color/secondaryTextColor"
                 android:textSize="@dimen/primary_text_size"
-                android:textStyle="bold"
                 tools:ignore="SpUsage"
                 tools:text="No: 2 Saraswathi Nagar, Periyakangankuppam \nUchimedu Road, Cuddalore 607 006" />
+
+            <TextView
+                android:id="@+id/created_at"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_margin_half"
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="@dimen/primary_text_size"
+                android:textStyle="bold"
+                tools:ignore="SpUsage"
+                tools:text="Created at: today" />
 
         </LinearLayout>
 

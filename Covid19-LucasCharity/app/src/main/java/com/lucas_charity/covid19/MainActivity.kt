@@ -44,6 +44,4 @@ class MainActivity : AppCompatActivity() {
     fun moveToFoodDetail() {
         startActivity(Intent(this, FoodDetailActivity::class.java))
     }
-
-
 }

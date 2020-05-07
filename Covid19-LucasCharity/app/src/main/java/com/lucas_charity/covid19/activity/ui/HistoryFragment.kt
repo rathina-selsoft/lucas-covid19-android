@@ -56,6 +56,7 @@ class HistoryFragment : Fragment() {
     lateinit var historyAdapter: HistoryAdapter
     private val showDateFormat = "MMM/dd/yyyy"
 
+    @SuppressLint("SimpleDateFormat")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,7 +66,13 @@ class HistoryFragment : Fragment() {
         ButterKnife.bind(this, root)
 
         dateCalendar = Calendar.getInstance()
-        getFoodHistory()
+
+        val dateRequest = DateRequest()
+        dateRequest.userId = Utils.user?.userId
+        dateRequest.fromDate = SimpleDateFormat(dateFormat).format(dateCalendar.time)
+        dateRequest.toDate = SimpleDateFormat(dateFormat).format(dateCalendar.time)
+
+        getFoodHistory(dateRequest)
 
         historyRV.layoutManager =
             LinearLayoutManager(mainActivity, LinearLayoutManager.VERTICAL, false)
@@ -77,15 +84,8 @@ class HistoryFragment : Fragment() {
         return root
     }
 
-    private fun getFoodHistory() {
-        val dateRequest = DateRequest()
-        dateRequest.userId = Utils.user?.userId
-        val fromDate = SimpleDateFormat(dateFormat, Locale.US)
-        dateRequest.fromDate = fromDate.format(dateCalendar.time)
-
-        val toDate = SimpleDateFormat(dateFormat, Locale.US)
-        dateRequest.toDate = toDate.format(dateCalendar.time)
-
+    private fun getFoodHistory(dateRequest: DateRequest) {
+        foodRequests.clear()
         val api: Api = RetrofitEngine.getClient
         val call: Call<FoodRequestResponse> = api.foodRequestHistory(dateRequest)
 
@@ -145,8 +145,13 @@ class HistoryFragment : Fragment() {
         }
 
         filterBtn.setOnClickListener {
-            Utils.log("From Date: ${SimpleDateFormat(dateFormat).format(fromDateCalendar.time)}")
-            Utils.log("To Date: ${SimpleDateFormat(dateFormat).format(toDateCalendar.time)}")
+            val dateRequest = DateRequest()
+            dateRequest.userId = Utils.user?.userId
+            dateRequest.fromDate = SimpleDateFormat(dateFormat).format(fromDateCalendar.time)
+            dateRequest.toDate = SimpleDateFormat(dateFormat).format(toDateCalendar.time)
+
+            getFoodHistory(dateRequest)
+            filterByDateDialog.dismiss()
         }
 
         filterByDateDialog.show()
@@ -154,7 +159,8 @@ class HistoryFragment : Fragment() {
 
     private fun chooseDateTapped(tv: TextView, viewDateCalendar: Calendar) {
         DatePickerDialog(
-            mainActivity, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            mainActivity,
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                 viewDateCalendar.set(Calendar.YEAR, year)
                 viewDateCalendar.set(Calendar.MONTH, monthOfYear)
                 viewDateCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)

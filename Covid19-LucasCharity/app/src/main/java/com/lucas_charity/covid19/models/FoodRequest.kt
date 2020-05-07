@@ -55,4 +55,7 @@ class FoodRequest {
     @Expose
     var user: User? = null
 
+    @SerializedName("createdAt")
+    @Expose
+    var createdAt: String? = null
 }
