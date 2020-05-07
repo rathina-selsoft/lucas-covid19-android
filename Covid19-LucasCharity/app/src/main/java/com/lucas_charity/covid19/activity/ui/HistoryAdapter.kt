@@ -40,13 +40,13 @@ class HistoryAdapter(private val context: Context,
         holder.phoneNumber.text = foodRequest.phoneNumber
         holder.address.text = foodRequest.address
         holder.date.text = "${foodRequest.date} on ${foodRequest.time}"
-        holder.createdAt.text = "created on: ${getCreatedAtTime(foodRequest.createdAt)}"
+        holder.createdAt.text = getCreatedAtTime(foodRequest.createdAt)
     }
 
     @SuppressLint("SimpleDateFormat")
     private fun getCreatedAtTime(createdAt: String?): String {
 
-        val date = SimpleDateFormat("yyyy-MM-dd").parse(createdAt)
+        val date = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(createdAt)
         var time = date.time
         if (time < 1000000000000L) {
             time *= 1000
