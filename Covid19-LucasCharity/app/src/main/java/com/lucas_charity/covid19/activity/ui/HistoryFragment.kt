@@ -1,6 +1,8 @@
 package com.lucas_charity.covid19.activity.ui
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -45,10 +47,14 @@ class HistoryFragment : Fragment() {
     lateinit var filterFab: FloatingActionButton
 
     lateinit var dateCalendar: Calendar
+    lateinit var fromDateCalendar: Calendar
+    lateinit var toDateCalendar: Calendar
+
     private val dateFormat = "yyyy-MM-dd"
     lateinit var mainActivity: MainNavActivity
     var foodRequests: MutableList<FoodRequest> = ArrayList<FoodRequest>()
     lateinit var historyAdapter: HistoryAdapter
+    private val showDateFormat = "MMM/dd/yyyy"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -110,6 +116,7 @@ class HistoryFragment : Fragment() {
         })
     }
 
+    @SuppressLint("SimpleDateFormat")
     @OnClick(R.id.filter_history)
     fun onFilterTapped(view: View) {
         val filterDialog = AlertDialog.Builder(mainActivity)
@@ -121,7 +128,44 @@ class HistoryFragment : Fragment() {
         val toDate: TextView = filterView.findViewById(R.id.to_date) as TextView
         val filterBtn: Button = filterView.findViewById(R.id.filter_btn) as Button
 
+        fromDateCalendar = Calendar.getInstance()
+        toDateCalendar = Calendar.getInstance()
+
+        fromDate.text = SimpleDateFormat(showDateFormat).format(fromDateCalendar.time)
+        toDate.text = SimpleDateFormat(showDateFormat).format(toDateCalendar.time)
+
+        fromDate.setOnClickListener {
+            chooseDateTapped(fromDate, fromDateCalendar)
+            fromDate.text = SimpleDateFormat(showDateFormat).format(fromDateCalendar.time)
+        }
+
+        toDate.setOnClickListener {
+            chooseDateTapped(toDate, toDateCalendar)
+            toDate.text = SimpleDateFormat(showDateFormat).format(toDateCalendar.time)
+        }
+
+        filterBtn.setOnClickListener {
+            Utils.log("From Date: ${SimpleDateFormat(dateFormat).format(fromDateCalendar.time)}")
+            Utils.log("To Date: ${SimpleDateFormat(dateFormat).format(toDateCalendar.time)}")
+        }
+
         filterByDateDialog.show()
+    }
+
+    private fun chooseDateTapped(tv: TextView, viewDateCalendar: Calendar) {
+        DatePickerDialog(
+            mainActivity, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                viewDateCalendar.set(Calendar.YEAR, year)
+                viewDateCalendar.set(Calendar.MONTH, monthOfYear)
+                viewDateCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                val sdf = SimpleDateFormat(showDateFormat, Locale.US)
+                tv.text = sdf.format(viewDateCalendar.time)
+            },
+            viewDateCalendar.get(Calendar.YEAR),
+            viewDateCalendar.get(Calendar.MONTH),
+            viewDateCalendar.get(Calendar.DAY_OF_MONTH)
+        ).show()
     }
 
     private fun getHistoryViews() {
